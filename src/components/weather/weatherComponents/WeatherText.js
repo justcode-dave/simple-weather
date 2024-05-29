@@ -16,8 +16,8 @@ const WeatherText = ({ header, subHeader, iconSrc }) => {
       alignItems: 'center', // Center-align items vertically
     },
     icon: {
-      width: '64px', // Icon width
-      height: '64px', // Icon height
+      width: '40px', // Icon width
+      height: '40px', // Icon height
       marginRight: '1rem', // Space between icon and text
     },
     textContainer: {

@@ -1,4 +1,6 @@
+// src/components/weather/Weather.js
 import React, { useState, useEffect } from 'react';
+import { FaCloudRain, FaTachometerAlt, FaWind, FaTint, FaGlobeAmericas, FaMapMarkerAlt } from 'react-icons/fa';
 import './Weather.css';
 import WeatherText from './weatherComponents/WeatherText';
 
@@ -9,7 +11,7 @@ const Weather = () => {
 
   /* Geographical Variables */
   const [city, setCity] = useState('Seattle');
-  const [region, setRegion] = useState('Washington')
+  const [region, setRegion] = useState('Washington');
   const [time, setTime] = useState();
 
   /* Text and Image State Variables */
@@ -22,8 +24,14 @@ const Weather = () => {
   const [pressure, setPressure] = useState(0);
   const [windSpeed, setWindSpeed] = useState(0);
   const [humidity, setHumidity] = useState(0);
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
 
-  let URL = 'http://api.weatherapi.com/v1/current.json?key=82e50679e0904a7295a205705242405&aqi=no';
+  let apiKey = "";
+
+  let URL = 'http://api.weatherapi.com/v1/current.json?aqi=no&';
+
+  URL += apiKey;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,32 +69,32 @@ const Weather = () => {
     {
       header: "Precipitation",
       subHeader: "0",
-      iconSrc: "//cdn.weatherapi.com/weather/64x64/day/113.png"
+      icon: <FaCloudRain size={32} /> // Rainy cloud icon
     },
     {
-      header: "Rainy",
+      header: "Pressure",
       subHeader: "2",
-      iconSrc: "//cdn.weatherapi.com/weather/64x64/day/296.png"
+      icon: <FaTachometerAlt size={32} /> // Pressure gauge icon
     },
     {
-      header: "Cloudy",
+      header: "Windspeed",
       subHeader: "3",
-      iconSrc: "//cdn.weatherapi.com/weather/64x64/day/122.png"
+      icon: <FaWind size={32} /> // Windy icon
     },
     {
-      header: "Snowy",
+      header: "Humidity",
       subHeader: "4",
-      iconSrc: "//cdn.weatherapi.com/weather/64x64/day/326.png"
+      icon: <FaTint size={32} /> // Humidity (water drop) icon
     },
     {
-      header: "Windy",
+      header: "Latitude",
       subHeader: "5",
-      iconSrc: "//cdn.weatherapi.com/weather/64x64/day/248.png"
+      icon: <FaGlobeAmericas size={32} /> // Globe icon
     },
     {
-      header: "Stormy",
+      header: "Longitude",
       subHeader: "6",
-      iconSrc: "//cdn.weatherapi.com/weather/64x64/day/389.png"
+      icon: <FaMapMarkerAlt size={32} /> // Map marker icon
     }
   ];
 
@@ -98,7 +106,7 @@ const Weather = () => {
             key={index} 
             header={data.header} 
             subHeader={data.subHeader} 
-            iconSrc={data.iconSrc} 
+            icon={data.icon} 
           />
         ))}
       </div>
